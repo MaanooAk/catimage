@@ -1,8 +1,8 @@
 
 
-default: clean catimage
+default: semiclean catimage
 
-catimage: image.o
+catimage: image.o help.c
 	gcc -O3 -lm image.o main.c -o catimage
 
 image.o: stb_image.h
@@ -11,9 +11,13 @@ image.o: stb_image.h
 stb_image.h:
 	wget https://raw.githubusercontent.com/nothings/stb/master/stb_image.h
 
-clean:
-	rm -f catimage
+help.c:
+	xxd -i help > help.c
 
+semiclean:
+	rm -f help.c catimage
+clean: semiclean
+	rm -f stb_image.h image.o
 
 INSTALL_PATH = /usr/local
 

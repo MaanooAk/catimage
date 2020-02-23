@@ -25,3 +25,5 @@ git clone https://github.com/MaanooAk/catimage.git
 cd catimage
 sudo make install
 ```
+
+Build dependencies: `make`, `gcc`, `wget`, `xxd`

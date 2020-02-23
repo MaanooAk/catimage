@@ -1,0 +1,18 @@
+catimage: unknown option: %c
+
+Usage: catimage [OPTION]... [FILE]...
+Cat images to the terminal using ANSI escape sequences.
+
+With no FILE, or when FILE is -, read standard input.
+
+  -n              scale down by image by nearest neighbor (less smooth image)
+  -f              fit image only by width
+  -s              show images one by one (press enter to continue)
+  -i              ignore missing or unsupported files
+
+  -w INTEGER      set the max width
+  -h INTEGER      set the max height
+
+  -h, -v          display this help and exit
+
+Full documentation <https://github.com/MaanooAk/catimage>

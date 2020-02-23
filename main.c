@@ -24,6 +24,7 @@ char printimage(FILE *file, char* filename);
 // #include "image.c"
 unsigned char* read_image(FILE* file, int* width, int* height, int* channels);
 
+
 #define printf_error(format, ...) \
 	if (!ignore) fprintf(stderr, "catimage: " format, ##__VA_ARGS__);
 
@@ -58,16 +59,21 @@ int main(int argc, char *argv[]) {
 
 		} else for (int ci = 1; argv[i][ci] != 0; ci++) {
 
-			if (argv[i][ci] == '-') onlyfiles = 1;
+			if (argv[i][ci] == '-' && argv[i][ci+1] == 0) onlyfiles = 1;
 
 			else if (argv[i][ci] == 'n') nearest = 1;
 			else if (argv[i][ci] == 'f') fit = 0;
 			else if (argv[i][ci] == 's') slideshow = 1;
 			else if (argv[i][ci] == 'i') ignore = 1;
 
-			else if (argv[i][ci] == 'w') window_w = atoi(argv[++i]);
-			else if (argv[i][ci] == 'h') window_h = atoi(argv[++i]);
+			else if (argv[i][ci] == 'w' && i+1 < argc) window_w = atoi(argv[++i]);
+			else if (argv[i][ci] == 'h' && i+1 < argc) window_h = atoi(argv[++i]);
 
+			else {
+				#include "help.c"
+				printf(help, argv[i][ci]);
+				return 1;
+			}
 		}
 	}
 
